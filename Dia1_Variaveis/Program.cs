@@ -4,7 +4,7 @@ namespace Dia1_variaveis
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void CalcularIMC()
         {
             Console.WriteLine("Calculadora de IMC");
             Console.WriteLine("Digite seu peso");
@@ -16,6 +16,10 @@ namespace Dia1_variaveis
             float imc = peso / (altura * altura);
 
             Console.WriteLine("O seu IMC é igual a: " + imc);
+        }
+        static void Main(string[] args)
+        {
+            CalcularIMC();
         }
     }
 }
