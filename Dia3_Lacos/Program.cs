@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace dia3_lacos
 {
@@ -12,6 +13,7 @@ namespace dia3_lacos
                 contador += 1;
                 Console.WriteLine($"{contador}");
                 Console.Beep();
+                Thread.Sleep(500);
             }
         }
         static void Main(String[] args)
