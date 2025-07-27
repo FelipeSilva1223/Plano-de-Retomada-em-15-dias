@@ -10,6 +10,9 @@ namespace Dia1_variaveis
             Console.WriteLine("------------------");
             Console.WriteLine("Calculadora de IMC");
             Console.WriteLine("------------------");
+            Console.WriteLine("Digite seu nome");
+            string nome = Console.ReadLine();
+
             Console.WriteLine("Digite seu peso");
             float peso = float.Parse(Console.ReadLine()!, CultureInfo.InvariantCulture);
 
@@ -24,9 +27,10 @@ namespace Dia1_variaveis
             else if (imc >= 30 && imc <= 34.9) avaliacao = "obesidade grau I";
             else if (imc >= 35 && imc <= 39.9) avaliacao = "obesidade grau II";
             else if (imc > 40) avaliacao = "obesidade grau III";
-            Console.WriteLine("---------------------------");
-            Console.WriteLine($"O seu IMC é igual a: {imc:F2}, você está com {avaliacao}.");
-            Console.WriteLine("---------------------------");
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine($"{nome} o seu IMC é igual a: {imc:F2}, você está com {avaliacao}.");
+            Console.WriteLine("-------------------------------------");
+            Console.ReadKey();
         }
         static void Main(string[] args)
         {
