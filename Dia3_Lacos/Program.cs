@@ -18,7 +18,7 @@ namespace dia3_lacos
         }
         public static void ContarAte15()
         {
-            for (int index = 0; index < 15; index++)
+            for (int index = 1; index < 16; index++)
             {
                 Console.WriteLine(index);
                 Console.Beep();
