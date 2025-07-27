@@ -26,10 +26,27 @@ namespace Dia2_Variaveis
                 Console.WriteLine("Você é idoso");
             }
             Console.Beep();
+            Console.ReadKey();
+        }
+        public static void QueDia()
+        {
+            Console.WriteLine("Que dia é hoje? (digite entre 1 e 7)");
+            int dia = Console.ReadLine() switch
+            {
+                <= 1 => Console.WriteLine("Hoje é Domingo"),
+                <= 2 => Console.WriteLine("Hoje é Segunda-feira!"),
+                <= 3 => Console.WriteLine("Hoje é Terça-feira!"),
+                <= 4 => Console.WriteLine("Hoje é Quarta-feira!"),
+                <= 5 => Console.WriteLine("Hoje é Quinta-feira!"),
+                <= 6 => Console.WriteLine("Hoje é Sexta-feira! Sextou bebê!!!"),
+                <= 7 => Console.WriteLine("Hoje é Sábado!"),
+                _ => Console.WriteLine($"{dia} não é um dia")
+            };
         }
         static void Main(string[] args)
         {
-            VerificarFaixaEtaria();
+            //VerificarFaixaEtaria();
+            QueDia();
         }
     }
 }
