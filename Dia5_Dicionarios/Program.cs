@@ -17,19 +17,19 @@ namespace Dia5_Dicionarios
                         {
                             Console.WriteLine(Agenda[1]);
                         }*/
-            Dictionary<int, List<string>> Agenda = new();
-            Agenda.Add(1, new List<string> { "Felipe", "27996937796" });
-            Agenda.Add(2, new List<string> { "Pet", "55996937796" });
-            Agenda.Add(3, new List<string> { "Pirubola", "11996937796" });
-            Agenda.Add(4, new List<string> { "Abu", "33996937796" });
+            Dictionary<string, List<string>> Agenda = new();
+            Agenda.Add("Felipe", new List<string> { "27996937796", "felipe@hotmail.com" });
+            Agenda.Add("Pet", new List<string> { "55996937796", "pet@gmail" });
+            Agenda.Add("Pirubola", new List<string> { "11996937796", "pbola@outlook.com" });
+            Agenda.Add("Abu", new List<string> { "33996937796", "abu@hotmail.com" });
 
-            Console.WriteLine("Lista de Contatos");
-            foreach (var (key, value) in Agenda)
+            Console.WriteLine("Lista de contatos:");
+            foreach (var (nome, dados) in Agenda)
             {
-                Console.WriteLine("\n");
-                foreach (var item in value)
+                Console.WriteLine($"\nContato; {nome}");
+                foreach (var item in dados)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine($"- {item}");
                 }
             }
         }
