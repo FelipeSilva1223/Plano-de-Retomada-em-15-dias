@@ -4,6 +4,10 @@ namespace Dia5_Dicionarios
 {
     class Program
     {
+        public void AdicionarContato()
+        {
+
+        }
         static void Main(String[] args)
         {
             /*            Dictionary<int, String> Agenda = new(); // Declaração de um dicionário
