@@ -14,17 +14,38 @@ namespace Dia6_Funcoes_e_Metodos
         }
         static void Main(String[] args)
         {
-            /* string frase = Saudar("Felipe");
-            Console.WriteLine(frase); */
-            Console.WriteLine("Digite uma idade para verificar se está na maioridade");
-            int idade = int.Parse(Console.ReadLine());
-            bool maioridade = verificarMaioridade(idade);
-            if (maioridade)
+            Console.WriteLine("==== MENU ====");
+            Console.WriteLine("1 - Saudar");
+            Console.WriteLine("2 - Verificar maioridade");
+            Console.WriteLine("==============");
+
+            Console.WriteLine("Digite a opção desejada");
+            int escolha = int.Parse(Console.ReadLine());
+
+            if (escolha == 1)
             {
-                Console.WriteLine("É de maior");
-            } else
+                Console.WriteLine("Digite seu nome: ");
+                string nome = Console.ReadLine();
+                string frase = Saudar(nome);
+                Console.WriteLine(frase);
+            }
+            else if (escolha == 2)
             {
-                Console.WriteLine("É de menor");
+                Console.WriteLine("Digite sua idade");
+                int idade = int.Parse(Console.ReadLine());
+                bool maioridade = verificarMaioridade(idade);
+                if (maioridade)
+                {
+                    Console.WriteLine("Você é maior de idade");
+                }
+                else
+                {
+                    Console.WriteLine("Você é menor de idade");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida");
             }
         }
     }
