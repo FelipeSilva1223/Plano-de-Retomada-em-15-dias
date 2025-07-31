@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading;
 
 namespace Dia7_Calculadora
 {
     class Program
     {
-        public static int ExibirMenu(int opc)
+        public static int ExibirMenu()
         {
             Console.WriteLine("==== CALCULADORA ====");
             Console.WriteLine("1 - Somar");
@@ -17,11 +18,33 @@ namespace Dia7_Calculadora
         }
         static void Main(String[] args)
         {
-            int opcao = 5;
-            while (opcao != 0)
+            int opcao;
+            do
             {
-                int comando = ExibirMenu(opcao);
-            }
+                opcao = ExibirMenu();
+                switch (opcao)
+                {
+                    case 1:
+                        Console.WriteLine("teste1");
+                        break;
+                    case 2:
+                        Console.WriteLine("teste2");
+                        break;
+                    case 3:
+                        Console.WriteLine("teste3");
+                        break;
+                    case 4:
+                        Console.WriteLine("teste4");
+                        break;
+                    case 0:
+                        Console.WriteLine("Encerrando...");
+                        Thread.Sleep(2);
+                        break;
+                    default:
+                        Console.WriteLine("Opção Inválida");
+                        break;
+                }
+            } while (opcao != 0);
         }
     }
 }
