@@ -16,6 +16,26 @@ namespace Dia7_Calculadora
             int acao = int.Parse(Console.ReadLine());
             return acao;
         }
+        public static double Somar(double x, double y)
+        {
+            return x + y;
+        }
+        public static double Subtrair(double x, double y)
+        {
+            return x - y;
+        }
+        public static double Multiplicar(double x, double y)
+        {
+            return x * y;
+        }
+        public static double Dividir(double x, double y)
+        {
+            return x / y;
+        }
+        public static double LerNumero()
+        {
+            return 1;
+        }
         static void Main(String[] args)
         {
             int opcao;
@@ -25,7 +45,7 @@ namespace Dia7_Calculadora
                 switch (opcao)
                 {
                     case 1:
-                        Console.WriteLine("teste1");
+                        Console.WriteLine("teste2");
                         break;
                     case 2:
                         Console.WriteLine("teste2");
@@ -38,7 +58,6 @@ namespace Dia7_Calculadora
                         break;
                     case 0:
                         Console.WriteLine("Encerrando...");
-                        Thread.Sleep(2);
                         break;
                     default:
                         Console.WriteLine("Opção Inválida");
