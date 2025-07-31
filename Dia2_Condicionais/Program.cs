@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dia2_Variaveis
+namespace Dia2_Condicionais
 {
     class Program
     {
@@ -30,23 +30,41 @@ namespace Dia2_Variaveis
         }
         public static void QueDia()
         {
-            Console.WriteLine("Que dia é hoje? (digite entre 1 e 7)");
-            int dia = Console.ReadLine() switch
+            Console.WriteLine("Que dia é hoje? (digite entre 1 e 7");
+            string dia = Console.ReadLine();
+
+            switch (dia)
             {
-                <= 1 => Console.WriteLine("Hoje é Domingo"),
-                <= 2 => Console.WriteLine("Hoje é Segunda-feira!"),
-                <= 3 => Console.WriteLine("Hoje é Terça-feira!"),
-                <= 4 => Console.WriteLine("Hoje é Quarta-feira!"),
-                <= 5 => Console.WriteLine("Hoje é Quinta-feira!"),
-                <= 6 => Console.WriteLine("Hoje é Sexta-feira! Sextou bebê!!!"),
-                <= 7 => Console.WriteLine("Hoje é Sábado!"),
-                _ => Console.WriteLine($"{dia} não é um dia")
-            };
+                case "1":
+                    Console.WriteLine("Hoje é Domingo!");
+                    break;
+                case "2":
+                    Console.WriteLine("Hoje é Segunda-Feira!");
+                    break;
+                case "3":
+                    Console.WriteLine("Hoje é Terça-Feira!");
+                    break;
+                case "4":
+                    Console.WriteLine("Hoje é Quarta-Feira!");
+                    break;
+                case "5":
+                    Console.WriteLine("Hoje é Quinta-Feira!");
+                    break;
+                case "6":
+                    Console.WriteLine("Hoje é Sexta-Feira! Sextou bebê!!!");
+                    break;
+                case "7":
+                    Console.WriteLine("Hoje é Sábado");
+                    break;
+                default:
+                    Console.WriteLine($"{dia} não é um dia");
+                    break;
+            }
         }
         static void Main(string[] args)
-        {
+            {
             //VerificarFaixaEtaria();
             QueDia();
-        }
+            }
     }
 }
