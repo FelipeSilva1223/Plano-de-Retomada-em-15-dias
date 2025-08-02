@@ -16,6 +16,15 @@ namespace Dia7_Calculadora
             int acao = int.Parse(Console.ReadLine());
             return acao;
         }
+        public static double EscolherVariavel()
+        {
+            Console.WriteLine("Escolha o primeiro número: ");
+            double x = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Escolha o segundo número: ");
+            double y = double.Parse(Console.ReadLine());
+            return x;
+        }
         public static double Somar(double x, double y)
         {
             return x + y;
@@ -34,7 +43,9 @@ namespace Dia7_Calculadora
         }
         public static double LerNumero()
         {
-            return 1;
+            Console.WriteLine("Escolha um número: ");
+            double variavel = double.Parse(Console.ReadLine());
+            return variavel;
         }
         static void Main(String[] args)
         {
@@ -45,16 +56,19 @@ namespace Dia7_Calculadora
                 switch (opcao)
                 {
                     case 1:
-                        Console.WriteLine("teste2");
+                        Console.WriteLine("Somar escolhido");
                         break;
                     case 2:
                         Console.WriteLine("teste2");
+                        Subtrair(2, 1);
                         break;
                     case 3:
                         Console.WriteLine("teste3");
+                        Multiplicar(1, 1);
                         break;
                     case 4:
                         Console.WriteLine("teste4");
+                        Dividir(2, 1);
                         break;
                     case 0:
                         Console.WriteLine("Encerrando...");
