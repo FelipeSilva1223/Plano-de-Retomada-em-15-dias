@@ -71,9 +71,9 @@
         static void Main(String[] args)
         {
             string caminhoDoArquivo = @"C:\Users\felip\Documents\meudocumento.txt";
-            //EscreverFrase(caminhoDoArquivo);
+            EscreverFrase(caminhoDoArquivo);
 
-            //LerFrase(caminhoDoArquivo);
+            LerFrase(caminhoDoArquivo);
 
             LerLinhas(caminhoDoArquivo);
         }
