@@ -16,36 +16,43 @@ namespace Dia7_Calculadora
             int acao = int.Parse(Console.ReadLine());
             return acao;
         }
-        public static double EscolherVariavel()
+        public static double Somar()
         {
             Console.WriteLine("Escolha o primeiro número: ");
             double x = double.Parse(Console.ReadLine());
-
             Console.WriteLine("Escolha o segundo número: ");
             double y = double.Parse(Console.ReadLine());
-            return x;
-        }
-        public static double Somar(double x, double y)
-        {
             return x + y;
         }
-        public static double Subtrair(double x, double y)
+        public static double Subtrair()
         {
+            Console.WriteLine("Escolha o primeiro número: ");
+            double x = double.Parse(Console.ReadLine());
+            Console.WriteLine("Escolha o segundo número: ");
+            double y = double.Parse(Console.ReadLine());
             return x - y;
         }
-        public static double Multiplicar(double x, double y)
+        public static double Multiplicar()
         {
+            Console.WriteLine("Escolha o primeiro número: ");
+            double x = double.Parse(Console.ReadLine());
+            Console.WriteLine("Escolha o segundo número: ");
+            double y = double.Parse(Console.ReadLine());
             return x * y;
         }
-        public static double Dividir(double x, double y)
+        public static double Dividir()
         {
-            return x / y;
-        }
-        public static double LerNumero()
-        {
-            Console.WriteLine("Escolha um número: ");
-            double variavel = double.Parse(Console.ReadLine());
-            return variavel;
+            Console.WriteLine("Escolha o primeiro número: ");
+            double x = double.Parse(Console.ReadLine());
+            Console.WriteLine("Escolha o segundo número: ");
+            double y = double.Parse(Console.ReadLine());
+            if (x != 0 && y != 0)
+            {
+                return x / y;
+            } else
+            {
+                return 0;
+            }
         }
         static void Main(String[] args)
         {
@@ -56,19 +63,20 @@ namespace Dia7_Calculadora
                 switch (opcao)
                 {
                     case 1:
-                        Console.WriteLine("Somar escolhido");
+                        Console.WriteLine("Soma selecionada");
+                        Console.WriteLine("O resultado é: " + Somar());
                         break;
                     case 2:
-                        Console.WriteLine("teste2");
-                        Subtrair(2, 1);
+                        Console.WriteLine("Subtração selecionada");
+                        Console.WriteLine("O resultado é: " + Subtrair());
                         break;
                     case 3:
-                        Console.WriteLine("teste3");
-                        Multiplicar(1, 1);
+                        Console.WriteLine("Multiplicação selecionada");
+                        Console.WriteLine("O resultado é: " + Multiplicar());
                         break;
                     case 4:
-                        Console.WriteLine("teste4");
-                        Dividir(2, 1);
+                        Console.WriteLine("Divisao selecionada");
+                        Console.WriteLine("O resultado é: " + Dividir());
                         break;
                     case 0:
                         Console.WriteLine("Encerrando...");
