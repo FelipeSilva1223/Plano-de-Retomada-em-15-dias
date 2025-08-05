@@ -16,41 +16,44 @@ namespace Dia7_Calculadora
             int acao = int.Parse(Console.ReadLine());
             return acao;
         }
+        public static double LerNumero(string mensagem)
+        {
+            Console.WriteLine("Escolha um número: ");
+            double numero = double.Parse(Console.ReadLine());
+            return numero;
+        }
         public static double Somar()
         {
-            Console.WriteLine("Escolha o primeiro número: ");
-            double x = double.Parse(Console.ReadLine());
-            Console.WriteLine("Escolha o segundo número: ");
-            double y = double.Parse(Console.ReadLine());
+            double x = LerNumero("Escolha o primeiro número: ");
+            double y = LerNumero("Escolha o segundo número: ");
+            Thread.Sleep(1000);
             return x + y;
         }
         public static double Subtrair()
         {
-            Console.WriteLine("Escolha o primeiro número: ");
-            double x = double.Parse(Console.ReadLine());
-            Console.WriteLine("Escolha o segundo número: ");
-            double y = double.Parse(Console.ReadLine());
+            double x = LerNumero("Escolha o primeiro número: ");
+            double y = LerNumero("Escolha o segundo número: ");
+            Thread.Sleep(1000);
             return x - y;
         }
         public static double Multiplicar()
         {
-            Console.WriteLine("Escolha o primeiro número: ");
-            double x = double.Parse(Console.ReadLine());
-            Console.WriteLine("Escolha o segundo número: ");
-            double y = double.Parse(Console.ReadLine());
+            double x = LerNumero("Escolha o primeiro número: ");
+            double y = LerNumero("Escolha o segundo número: ");
+            Thread.Sleep(1000);
             return x * y;
         }
         public static double Dividir()
         {
-            Console.WriteLine("Escolha o primeiro número: ");
-            double x = double.Parse(Console.ReadLine());
-            Console.WriteLine("Escolha o segundo número: ");
-            double y = double.Parse(Console.ReadLine());
+            double x = LerNumero("Escolha o primeiro número: ");
+            double y = LerNumero("Escolha o segundo número: ");
             if (x != 0 && y != 0)
             {
+                Thread.Sleep(1000);
                 return x / y;
             } else
             {
+                Thread.Sleep(1000);
                 return 0;
             }
         }
@@ -64,26 +67,40 @@ namespace Dia7_Calculadora
                 {
                     case 1:
                         Console.WriteLine("Soma selecionada");
+                        Thread.Sleep(1000);
                         Console.WriteLine("O resultado é: " + Somar());
                         break;
                     case 2:
                         Console.WriteLine("Subtração selecionada");
+                        Thread.Sleep(1000);
                         Console.WriteLine("O resultado é: " + Subtrair());
                         break;
                     case 3:
                         Console.WriteLine("Multiplicação selecionada");
+                        Thread.Sleep(1000);
                         Console.WriteLine("O resultado é: " + Multiplicar());
                         break;
                     case 4:
                         Console.WriteLine("Divisao selecionada");
+                        Thread.Sleep(1000);
                         Console.WriteLine("O resultado é: " + Dividir());
                         break;
                     case 0:
-                        Console.WriteLine("Encerrando...");
+                        Console.Write("Encerrando");
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Thread.Sleep(1000);
+                            Console.Write(".");
+                        }
+                        Thread.Sleep(1000);
+                        Console.WriteLine("\nAté a próxima!");
+                        Thread.Sleep(1000);
                         break;
                     default:
                         Console.WriteLine("Opção Inválida");
+                        Thread.Sleep(1000);
                         break;
+                    Thread.Sleep(1000);
                 }
             } while (opcao != 0);
         }
