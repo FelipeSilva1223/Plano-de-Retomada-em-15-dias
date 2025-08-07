@@ -19,6 +19,7 @@
             {
                 Console.WriteLine($"- {carro.Modelo}, {carro.Ano}, {carro.Cor}");
             }
+            Console.Write("\n");
         }
 
         public Pessoa(string nome, int idade)
@@ -57,12 +58,20 @@
             Pessoa p1 = new Pessoa("Felipe", 26);
             Pessoa p2 = new Pessoa("Fulano", 17);
 
-            Carro c1 = new Carro("Fiat Uno", 2010, "Branca");
-            Carro c2 = new Carro("Fiat Palio", 2014, "Vermelha");
-            Carro c3 = new Carro("VW Gol GT", 1986, "Preta");
-            Carro c4 = new Carro("Ford Fiesta", 2006, "Prata");
+            Carro uno = new Carro("Fiat Uno", 2010, "Branca");
+            Carro palio = new Carro("Fiat Palio", 2014, "Vermelha");
+            Carro gol = new Carro("VW Gol GT", 1986, "Preta");
+            Carro fiesta = new Carro("Ford Fiesta", 2006, "Prata");
+
+            p1.AdicionarCarro(gol);
+            p1.AdicionarCarro(palio);
+            p1.AdicionarCarro(uno);
+
+            p2.AdicionarCarro(fiesta);
+            p2.AdicionarCarro(uno);
 
             p1.ExibirCarros();
+            p2.ExibirCarros();
         }
     }
 }
