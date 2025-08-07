@@ -5,6 +5,22 @@
         public string Nome;
         public int Idade;
 
+        public List<Carro> Carros = new List<Carro>();
+
+        public void AdicionarCarro(Carro carro)
+        {
+            Carros.Add(carro);
+        }
+        public void ExibirCarros()
+        {
+            Console.WriteLine($"Olá, meu nome é {Nome}, tenho {Idade} anos");
+            Console.WriteLine($"Carros de {Nome}:");
+            foreach (var carro in Carros)
+            {
+                Console.WriteLine($"- {carro.Modelo}, {carro.Ano}, {carro.Cor}");
+            }
+        }
+
         public Pessoa(string nome, int idade)
         {
             this.Nome = nome;
@@ -46,10 +62,7 @@
             Carro c3 = new Carro("VW Gol GT", 1986, "Preta");
             Carro c4 = new Carro("Ford Fiesta", 2006, "Prata");
 
-            c1.ExibirInformacoes();
-            c2.ExibirInformacoes();
-            c3.ExibirInformacoes();
-            c4.ExibirInformacoes();
+            p1.ExibirCarros();
         }
     }
 }
