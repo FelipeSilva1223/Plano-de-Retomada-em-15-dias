@@ -32,7 +32,6 @@
             Console.WriteLine($"Olá, meu nome é {Nome}, tenho {Idade} anos!");
         }
     }
-
     class Carro
     {
         public string Modelo;
