@@ -13,18 +13,20 @@
                 Console.WriteLine("Escreva uma frase para o arquivo: ");
                 string frase = Console.ReadLine();
 
-                if (!ChecarArquivo(arquivo))
-                {
-                    File.Create(arquivo).Close();
-                }
-                else
+                if (ChecarArquivo(arquivo))
                 {
                     File.WriteAllText(arquivo, frase); // Escrever no arquivo (substitui o textgo antigo)
                     //File.AppendAllText(arquivo, frase2); // Adicionar outro texto sem apagar o antigo
-                    Console.WriteLine("A frase foi adicionada ao arquivo com sucesso!");
+                    Console.WriteLine("A frase foi adicionada ao arquivo com sucesso!\n");
+                }
+                else
+                {
+                    File.Create(arquivo).Close();
+                    File.WriteAllText(arquivo, frase);
+                    Console.WriteLine("A frase foi adicionada ao arquivo com sucesso!\n");
                 }
 
-                } catch (IOException ex)
+            } catch (IOException ex)
             {
                 Console.WriteLine("Erro ao escrever no arquivo: " + ex.Message);
             } catch (UnauthorizedAccessException ex)
@@ -40,7 +42,7 @@
                 if (ChecarArquivo(arquivo))
                 {
                     string texto = File.ReadAllText(arquivo); // Ler arquivo
-                    Console.WriteLine(texto);
+                    Console.WriteLine($"O atual conteúdo do arquivo é:\n\n- {texto}");
                     Console.ReadKey();
                 }
                 else Console.WriteLine("Arquivo não existe!");
@@ -82,6 +84,8 @@
             LerFrase(caminhoDoArquivo);
 
             //LerLinhas(caminhoDoArquivo);
+
+            //ApagarArquivo(caminhoDoArquivo);
         }
     }
 }
