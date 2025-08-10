@@ -62,12 +62,6 @@
             Carro gol = new Carro("VW Gol GT", 1986, "Preta");
             Carro fiesta = new Carro("Ford Fiesta", 2006, "Prata");
 
-            p1.AdicionarCarro(gol);
-            p1.AdicionarCarro(palio);
-            p1.AdicionarCarro(uno);
-
-            p2.AdicionarCarro(fiesta);
-            p2.AdicionarCarro(uno);
 
             p1.ExibirCarros();
             p2.ExibirCarros();
