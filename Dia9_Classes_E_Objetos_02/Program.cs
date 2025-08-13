@@ -23,6 +23,29 @@
 
             return opcao;
         }
+        public bool Sair()
+        {
+            bool sair;
+            while (true)
+            {
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("O que deseja fazer a seguir?");
+                Console.WriteLine("0 - Sair");
+                Console.WriteLine("1 - Voltar ao inicio");
+                Console.WriteLine("------------------------------");
+                int resposta = int.Parse(Console.ReadLine());
+                if (resposta == 0)
+                {
+                    sair = false;
+                    break;
+                } else if (resposta == 1)
+                {
+                    sair = true;
+                    break;
+                } else Console.WriteLine("Resposta inválida");
+            }
+            return sair;
+        }
 
         public void ExibirExtrato()
         {
@@ -55,41 +78,50 @@
             p1.NumeroConta = "123";
             p1.Titular = "Fulano";
 
-            int opcao;
-            do
+            try
             {
-                opcao = p1.ExibirMenu();
-                switch (opcao)
+                int opcao;
+                bool sair = false;
+                do
                 {
-                    case 1:
-                        {
-                            p1.ExibirExtrato();
-                            break;
-                        }
+                    opcao = p1.ExibirMenu();
+                    switch (opcao)
+                    {
+                        case 1:
+                            {
+                                p1.ExibirExtrato();
+                                break;
+                            }
 
-                    case 2:
-                        {
-                            Console.WriteLine("Quanto deseja depositar?");
-                            double valor = double.Parse(Console.ReadLine());
-                            p1.Depositar(valor);
-                            break;
-                        }
+                        case 2:
+                            {
+                                Console.WriteLine("Quanto deseja depositar?");
+                                double valor = double.Parse(Console.ReadLine());
+                                p1.Depositar(valor);
+                                break;
+                            }
 
-                    case 3:
-                        {
-                            Console.WriteLine("Quanto deseja sacar?");
-                            double valor = double.Parse(Console.ReadLine());
-                            p1.Sacar(valor);
-                        }
-                        break;
-
-                    case 0:
-                        {
-                            Console.WriteLine("Obrigado por usar nosso sistema bancário!");
+                        case 3:
+                            {
+                                Console.WriteLine("Quanto deseja sacar?");
+                                double valor = double.Parse(Console.ReadLine());
+                                p1.Sacar(valor);
+                            }
                             break;
-                        }
-                }
-            } while (opcao != 0);
+
+                        case 0:
+                            {
+                                Console.WriteLine("Obrigado por usar nosso sistema bancário!");
+                                return;
+                            }
+                    }
+                } while (p1.Sair());
+            } catch (FormatException)
+            {
+                Console.WriteLine("ERRO");
+                Thread.Sleep(3000);
+                p1.ExibirMenu();
+            }
         }
     }
 }
