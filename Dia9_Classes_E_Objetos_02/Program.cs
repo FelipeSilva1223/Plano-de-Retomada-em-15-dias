@@ -8,26 +8,6 @@
 
         private double _saldo;
 
-        public int ExibirMenu()
-        {
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("Bem vindo ao sistema bancário!\n");
-            Console.WriteLine("Qual serviço deseja utilizar?\n");
-            Console.WriteLine("1 - Ver extrato");
-            Console.WriteLine("2 - Depositar");
-            Console.WriteLine("3 - Sacar");
-            Console.WriteLine("0 - Sair");
-            Console.WriteLine("------------------------------");
-
-            string entrada = Console.ReadLine();
-            if (int.TryParse(entrada, out int opcao))
-            {
-                return opcao;
-            } else
-            {
-                return 0;
-            }
-        }
         public bool Sair()
         {
             bool sair;
@@ -60,23 +40,49 @@
         }
         public void Depositar(double valor)
         {
-            saldo += valor;
+            _saldo += valor;
             Console.WriteLine($"Depósito de {valor} realizado com sucesso!");
         }
         public void Sacar(double valor)
         {
-            if (saldo < valor)
+            if (_saldo < valor)
             {
                 Console.WriteLine("Você não possui saldo o suficiente.");
             } else
             {
-                saldo -= valor;
+                _saldo -= valor;
                 Console.WriteLine($"Saque de {valor} realizado com sucesso!");
             }
         }
     }
     class Program
     {
+        public int ExibirMenu()
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Bem vindo ao sistema bancário!\n");
+            Console.WriteLine("Qual serviço deseja utilizar?\n");
+            Console.WriteLine("1 - Ver extrato");
+            Console.WriteLine("2 - Depositar");
+            Console.WriteLine("3 - Sacar");
+            Console.WriteLine("0 - Sair");
+            Console.WriteLine("------------------------------");
+
+            string entrada = Console.ReadLine();
+            if (int.TryParse(entrada, out int opcao))
+            {
+                return opcao;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public bool ChecarArquivo(string arquivo)
+        {
+            return File.Exists(arquivo);
+        }
         static void Main(String[] args)
         {
             ContaBancaria p1 = new ContaBancaria();
