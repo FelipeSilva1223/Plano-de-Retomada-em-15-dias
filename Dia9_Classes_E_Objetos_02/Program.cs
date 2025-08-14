@@ -6,7 +6,7 @@
 
         public string Titular { get; set; }
 
-        private double saldo { get; set; }
+        private double _saldo;
 
         public int ExibirMenu()
         {
@@ -19,9 +19,14 @@
             Console.WriteLine("0 - Sair");
             Console.WriteLine("------------------------------");
 
-            int opcao = int.Parse(Console.ReadLine());
-
-            return opcao;
+            string entrada = Console.ReadLine();
+            if (int.TryParse(entrada, out int opcao))
+            {
+                return opcao;
+            } else
+            {
+                return 0;
+            }
         }
         public bool Sair()
         {
@@ -51,7 +56,7 @@
         {
             Console.WriteLine("Numero da conta: " + NumeroConta);
             Console.WriteLine($"Titular da conta: {Titular}");
-            Console.WriteLine($"O seu saldo atual é de R$ {saldo} reais.");
+            Console.WriteLine($"O seu saldo atual é de R$ {_saldo} reais.");
         }
         public void Depositar(double valor)
         {
