@@ -2,41 +2,32 @@
 {
     public class ContaBancaria
     {
-        public string NumeroConta { get; set; }
+        public string NumeroDaConta { get; set; }
 
         public string Titular { get; set; }
 
         private double _saldo;
 
-        public bool Sair()
-        {
-            bool sair;
-            while (true)
-            {
-                Console.WriteLine("------------------------------");
-                Console.WriteLine("O que deseja fazer a seguir?");
-                Console.WriteLine("0 - Sair");
-                Console.WriteLine("1 - Voltar ao inicio");
-                Console.WriteLine("------------------------------");
-                int resposta = int.Parse(Console.ReadLine());
-                if (resposta == 0)
-                {
-                    sair = false;
-                    break;
-                } else if (resposta == 1)
-                {
-                    sair = true;
-                    break;
-                } else Console.WriteLine("Resposta inválida");
-            }
-            return sair;
-        }
+        private string _caminhoExtrato;
 
-        public void ExibirExtrato()
+        public void ExibirExtrato(string caminhoExtrato)
         {
-            Console.WriteLine("Numero da conta: " + NumeroConta);
-            Console.WriteLine($"Titular da conta: {Titular}");
-            Console.WriteLine($"O seu saldo atual é de R$ {_saldo} reais.");
+            try
+            {
+                if (File.Exists(caminhoExtrato))
+                {
+                    string extrato = File.ReadAllText(caminhoExtrato);
+                    Console.WriteLine("Numero da conta: " + NumeroDaConta);
+                    Console.Write($" - Titular da conta: {Titular}");
+                    Console.WriteLine($"O seu saldo atual é de R$ {extrato} reais.");
+                } else
+                {
+                    Console.WriteLine("Não há dados sobre esta conta.");
+                }
+            } catch (IOException ex)
+            {
+                Console.WriteLine("Erro na leitura dos dados de extrato." + ex.Message);
+            }
         }
         public void Depositar(double valor)
         {
@@ -83,56 +74,42 @@
         {
             return File.Exists(arquivo);
         }
+
+        public bool Sair()
+        {
+            bool sair;
+            while (true)
+            {
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("O que deseja fazer a seguir?");
+                Console.WriteLine("0 - Sair");
+                Console.WriteLine("1 - Voltar ao inicio");
+                Console.WriteLine("------------------------------");
+                int resposta = int.Parse(Console.ReadLine());
+                if (resposta == 0)
+                {
+                    sair = false;
+                    break;
+                }
+                else if (resposta == 1)
+                {
+                    sair = true;
+                    break;
+                }
+                else Console.WriteLine("Resposta inválida");
+            }
+            return sair;
+        }
+
         static void Main(String[] args)
         {
-            ContaBancaria p1 = new ContaBancaria();
-            p1.NumeroConta = "123";
-            p1.Titular = "Fulano";
-
-            try
+            ContaBancaria conta1 = new ContaBancaria
             {
-                int opcao;
-                bool sair = false;
-                do
-                {
-                    opcao = p1.ExibirMenu();
-                    switch (opcao)
-                    {
-                        case 1:
-                            {
-                                p1.ExibirExtrato();
-                                break;
-                            }
-
-                        case 2:
-                            {
-                                Console.WriteLine("Quanto deseja depositar?");
-                                double valor = double.Parse(Console.ReadLine());
-                                p1.Depositar(valor);
-                                break;
-                            }
-
-                        case 3:
-                            {
-                                Console.WriteLine("Quanto deseja sacar?");
-                                double valor = double.Parse(Console.ReadLine());
-                                p1.Sacar(valor);
-                            }
-                            break;
-
-                        case 0:
-                            {
-                                Console.WriteLine("Obrigado por usar nosso sistema bancário!");
-                                return;
-                            }
-                    }
-                } while (p1.Sair());
-            } catch (FormatException)
-            {
-                Console.WriteLine("ERRO");
-                Thread.Sleep(3000);
-                p1.ExibirMenu();
-            }
+                NumeroDaConta = "123",
+                Titular = "Fulano"
+            };
+            
+        }
         }
     }
 }
