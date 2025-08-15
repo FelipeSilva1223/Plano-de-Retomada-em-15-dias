@@ -8,7 +8,7 @@
 
         private double _saldo;
 
-        private string _caminhoDoExtrato = @$"D:\Pessoal\Estudos\Programação\C#\Plano de Retomada em 15 dias\Dia9_Classes_E_Objetos_02\ExtratoConta{numeroConta}.txt";
+        private string _caminhoDoExtrato = @$"D:\Pessoal\Estudos\Programação\C#\Plano de Retomada em 15 dias\Dia9_Classes_E_Objetos_02\ExtratoConta_{numeroConta}.txt";
 
         public void ExibirExtrato()
         {
@@ -34,6 +34,7 @@
         public void Depositar(double valor)
         {
             _saldo += valor;
+            File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
             Console.WriteLine($"Depósito de {valor} realizado com sucesso!");
         }
         public void Sacar(double valor)
@@ -44,6 +45,7 @@
             } else
             {
                 _saldo -= valor;
+                File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
                 Console.WriteLine($"Saque de {valor} realizado com sucesso!");
             }
         }
@@ -106,8 +108,8 @@
         static void Main(String[] args)
         {
             ContaBancaria conta1 = new ContaBancaria("123", "Fulano");
-            conta1.Depositar(50);
-            conta1.ExibirExtrato();
-        }
+            ContaBancaria conta2 = new ContaBancaria("321", "bertano");
+            conta2.ExibirExtrato();
         }
     }
+}
