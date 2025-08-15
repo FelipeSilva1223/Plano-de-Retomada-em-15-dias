@@ -1,28 +1,30 @@
 ﻿namespace Dia9_Classes_E_Objetos_02
 {
-    public class ContaBancaria
+    public class ContaBancaria (string numeroConta, string titular)
     {
-        public string NumeroDaConta { get; set; }
+        public string NumeroDaConta = numeroConta;
 
-        public string Titular { get; set; }
+        public string Titular = titular;
 
         private double _saldo;
 
-        private string _caminhoExtrato;
+        private string _caminhoDoExtrato = @$"D:\Pessoal\Estudos\Programação\C#\Plano de Retomada em 15 dias\Dia9_Classes_E_Objetos_02\ExtratoConta{numeroConta}.txt";
 
-        public void ExibirExtrato(string caminhoExtrato)
+        public void ExibirExtrato()
         {
             try
             {
-                if (File.Exists(caminhoExtrato))
+                if (File.Exists(_caminhoDoExtrato))
                 {
-                    string extrato = File.ReadAllText(caminhoExtrato);
-                    Console.WriteLine("Numero da conta: " + NumeroDaConta);
-                    Console.Write($" - Titular da conta: {Titular}");
+                    string extrato = File.ReadAllText(_caminhoDoExtrato);
+                    Console.WriteLine("- Numero da conta: " + NumeroDaConta);
+                    Console.WriteLine($"- Titular da conta: {Titular}");
                     Console.WriteLine($"O seu saldo atual é de R$ {extrato} reais.");
                 } else
                 {
-                    Console.WriteLine("Não há dados sobre esta conta.");
+                    File.Create(_caminhoDoExtrato).Close();
+                    File.WriteAllText(_caminhoDoExtrato, "0");
+                    Console.WriteLine("Ainda não ha extratos sobre esta conta.");
                 }
             } catch (IOException ex)
             {
@@ -103,13 +105,9 @@
 
         static void Main(String[] args)
         {
-            ContaBancaria conta1 = new ContaBancaria
-            {
-                NumeroDaConta = "123",
-                Titular = "Fulano"
-            };
-            
+            ContaBancaria conta1 = new ContaBancaria("123", "Fulano");
+            conta1.Depositar(50);
+            conta1.ExibirExtrato();
         }
         }
     }
-}
