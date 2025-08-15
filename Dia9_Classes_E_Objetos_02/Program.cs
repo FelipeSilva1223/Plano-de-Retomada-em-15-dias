@@ -109,6 +109,9 @@
         {
             ContaBancaria conta1 = new ContaBancaria("123", "Fulano");
             ContaBancaria conta2 = new ContaBancaria("321", "bertano");
+            conta1.Depositar(50);
+            conta2.Depositar(91);
+            conta1.ExibirExtrato();
             conta2.ExibirExtrato();
         }
     }
