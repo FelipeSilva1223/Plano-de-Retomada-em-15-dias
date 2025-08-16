@@ -2,9 +2,9 @@
 {
     public class ContaBancaria
     {
-        public string NumeroDaConta;
+        public string NumeroDaConta { get; private set; }
 
-        public string Titular;
+        public string Titular { get; private set; }
 
         private double _saldo;
 
