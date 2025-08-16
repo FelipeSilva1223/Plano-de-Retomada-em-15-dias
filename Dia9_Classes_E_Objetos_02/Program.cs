@@ -1,35 +1,43 @@
 ﻿namespace Dia9_Classes_E_Objetos_02
 {
-    public class ContaBancaria (string numeroConta, string titular)
+    public class ContaBancaria
     {
-        public string NumeroDaConta = numeroConta;
+        public string NumeroDaConta;
 
-        public string Titular = titular;
+        public string Titular;
 
         private double _saldo;
 
-        private string _caminhoDoExtrato = @$"D:\Pessoal\Estudos\Programação\C#\Plano de Retomada em 15 dias\Dia9_Classes_E_Objetos_02\ExtratoConta_{numeroConta}.txt";
+        private string _caminhoDoExtrato;
+
+        public ContaBancaria(string numero, string titular)
+        {
+            NumeroDaConta = numero;
+            Titular = titular;
+            _caminhoDoExtrato = @$"D:\Pessoal\Estudos\Programação\C#\Plano de Retomada em 15 dias\Dia9_Classes_E_Objetos_02\ExtratoConta_{NumeroDaConta}.txt";
+            if (File.Exists(_caminhoDoExtrato))
+            {
+                string saldoAtual = File.ReadAllText(_caminhoDoExtrato);
+
+                if (double.TryParse(saldoAtual, out double novoSaldo))
+                {
+                    _saldo = novoSaldo;
+                } else
+                {
+                    _saldo = 0;
+                    File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
+                }
+            } else
+            {
+                File.WriteAllText(_caminhoDoExtrato, "0");
+            }
+        }
 
         public void ExibirExtrato()
         {
-            try
-            {
-                if (File.Exists(_caminhoDoExtrato))
-                {
-                    string extrato = File.ReadAllText(_caminhoDoExtrato);
-                    Console.WriteLine("- Numero da conta: " + NumeroDaConta);
-                    Console.WriteLine($"- Titular da conta: {Titular}");
-                    Console.WriteLine($"O seu saldo atual é de R$ {extrato} reais.");
-                } else
-                {
-                    File.Create(_caminhoDoExtrato).Close();
-                    File.WriteAllText(_caminhoDoExtrato, "0");
-                    Console.WriteLine("Ainda não ha extratos sobre esta conta.");
-                }
-            } catch (IOException ex)
-            {
-                Console.WriteLine("Erro na leitura dos dados de extrato." + ex.Message);
-            }
+            Console.WriteLine("- Numero da conta: " + NumeroDaConta);
+            Console.WriteLine($"- Titular da conta: {Titular}");
+            Console.WriteLine($"O seu saldo atual é de R$ {_saldo} reais.");
         }
         public void Depositar(double valor)
         {
