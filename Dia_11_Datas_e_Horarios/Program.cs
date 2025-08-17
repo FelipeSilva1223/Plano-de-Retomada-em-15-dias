@@ -17,11 +17,22 @@
 
             if (DateTime.TryParse(dataEntrada, out DateTime dataEvento))
             {
-                TimeSpan contagem = dataEvento - agora;
-                Console.WriteLine($"Faltam {contagem.Days} dias para \"{eventoNome}\"");
+                TimeSpan contagem = dataEvento.Date - agora.Date;
+                if (dataEvento.Date > agora)
+                {
+                    Console.WriteLine($"Faltam {contagem.Days} dias para {eventoNome}.");
+                }
+                else if (dataEvento.Date == agora.Date)
+                {
+                    Console.WriteLine($"Hojé o dia do {eventoNome}!");
+                }
+                else if (dataEvento.Date < agora)
+                {
+                    Console.WriteLine($"{eventoNome} aconteceu há {Math.Abs(contagem.Days)} dias atrás.");
+                }
             } else
             {
-                Console.WriteLine("Formato da data errado!");
+                Console.WriteLine("Formatação da data digitado errado!");
             }
         }
     }
