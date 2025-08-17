@@ -10,6 +10,11 @@
 
         private string _caminhoDoExtrato;
 
+        private void SalvarSaldo()
+        {
+            File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
+        }
+
         public ContaBancaria(string numero, string titular)
         {
             NumeroDaConta = numero;
@@ -25,7 +30,7 @@
                 } else
                 {
                     _saldo = 0;
-                    File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
+                    SalvarSaldo();
                 }
             } else
             {
@@ -42,7 +47,7 @@
         public void Depositar(double valor)
         {
             _saldo += valor;
-            File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
+            SalvarSaldo();
             Console.WriteLine($"Depósito de {valor} realizado com sucesso!");
         }
         public void Sacar(double valor)
@@ -53,7 +58,7 @@
             } else
             {
                 _saldo -= valor;
-                File.WriteAllText(_caminhoDoExtrato, $"{_saldo}");
+                SalvarSaldo();
                 Console.WriteLine($"Saque de {valor} realizado com sucesso!");
             }
         }
@@ -117,10 +122,9 @@
         {
             ContaBancaria conta1 = new ContaBancaria("123", "Fulano");
             ContaBancaria conta2 = new ContaBancaria("321", "bertano");
+
             conta1.Depositar(50);
-            conta2.Depositar(91);
             conta1.ExibirExtrato();
-            conta2.ExibirExtrato();
         }
     }
 }
