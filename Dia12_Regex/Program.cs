@@ -33,25 +33,25 @@ namespace Dia12_Regex
                         continuar = false;
                         break;
                     default:
-                        Console.WriteLine("Escolha inválida.");
+                        Console.WriteLine("Escolha inválida.\n");
                         break;
                 }
             } while (continuar);
         }
         public static void ValidarEmail(string entrada)
         {
-            if (Regex.IsMatch(entrada, ""))
+            if (Regex.IsMatch(entrada, @"[^@\s\.]+@[^@\s\.]+.[^@\s\.]+$"))
             {
-                Console.WriteLine("Email válido!");
+                Console.WriteLine("Email válido!\n");
             }
             else
             {
-                Console.WriteLine("Email inválido!");
+                Console.WriteLine("Email inválido!\n");
             }
         }
         public static void ValidarCpf(string entrada)
         {
-            if (Regex.IsMatch(entrada, "[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}"))
+            if (Regex.IsMatch(entrada, "^[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}"))
             {
                 Console.WriteLine("CPF válido!");
             }
