@@ -4,68 +4,66 @@
     {
         public static bool Continuar()
         {
-            bool decisao;
             while (true)
             {
                 Console.WriteLine("Deseja iniciar um novo jogo?(s/n):");
                 string entrada = Console.ReadLine();
-                if (entrada == "s")
-                {
-                    decisao = false;
-                    break;
-                } else if (entrada == "n")
-                {
-                    decisao = true;
-                    break;
-                } else
-                {
-                    Console.WriteLine("Resposta inválida!");
-                }
-            } return decisao;
+                if (entrada == "s") return true;
+
+                if (entrada == "n") return false;
+
+                Console.WriteLine("Resposta inválida!");
+            }
         }
         static void Main(String[] args)
         {
             Random random = new();
 
-            int numeroPensado = random.Next(1, 101);
-
-            int tentativas = 1;
 
             Console.WriteLine("=== JOGO DE ADVINHAÇÃO ===");
             Console.WriteLine("Estou pensando em um número entre 1 e 100...");
             Console.WriteLine("Você tem 5 tentativas! Qual número estou pensando?:");
+
             do
             {
-                Console.WriteLine($"Tentativa {tentativas}:");
+                int numeroPensado = random.Next(1, 101);
 
-                string escolhastr = Console.ReadLine();
+                bool acertou = false;
 
                 Console.WriteLine(numeroPensado);
 
-                if (int.TryParse(escolhastr, out int escolhaint))
+                for (int tentativas = 1; tentativas <= 5; tentativas++)
                 {
-                    if (escolhaint == numeroPensado)
+                    Console.WriteLine($"Tentativa {tentativas} de 5:");
+
+                    string escolhastr = Console.ReadLine();
+
+                    if(int.TryParse(escolhastr, out int escolhaint))
                     {
-                        Console.WriteLine($"Parabens! Você acertou o número em {tentativas} tentantivas!");
-                        
-                    }
-                    else if (escolhaint < numeroPensado)
+                        if (escolhaint == numeroPensado)
+                        {
+                            Console.WriteLine($"Parabens! Você acertou o número em {tentativas} tentantiva{(tentativas > 1 ? "s":"")}!"); // (condição) - ? funciona como if/else, primeiro caso ("s") se for true, segundo ("") se for false
+                            acertou = true;
+                            break;
+                        }
+                        else if (escolhaint > numeroPensado)
+                        {
+                            Console.WriteLine("O número é MENOR!");
+                        } 
+                        else if (escolhaint < numeroPensado)
+                        {
+                            Console.WriteLine("O número é MAIOR!");
+                        }
+                    } else
                     {
-                        Console.WriteLine("O número é MAIOR!");
-                        tentativas += 1;
+                        Console.WriteLine("Escolha um número!");
+                        tentativas--;
                     }
-                    else if (escolhaint > numeroPensado)
-                    {
-                        Console.WriteLine("O número é MENOR!");
-                        tentativas += 1;
-                    }
-                }
-                else
+                } if (!acertou)
                 {
-                    Console.WriteLine("Escolha um NÚMERO!");
+                    Console.WriteLine($"Você perdeu... O número era {numeroPensado}.");
                 }
-            } while (tentativas <= 5);
-            Continuar();
+            } while (Continuar());
         }
     }
 }
