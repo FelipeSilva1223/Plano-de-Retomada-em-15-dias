@@ -2,13 +2,6 @@
 {
     class Program
     {
-        public static void MensagemColorida(string mensagem, ConsoleColor cor)
-        {
-            var corAntiga = Console.ForegroundColor;
-            Console.ForegroundColor = cor;
-            Console.WriteLine(mensagem);
-            Console.ForegroundColor = corAntiga;
-        }
         public static int ExibirMenu()
         {
             Console.WriteLine("=== GERENCIADOR DE TAREFAS ===");
@@ -17,7 +10,7 @@
             Console.WriteLine("3 - Editar tarefa");
             Console.WriteLine("4 - Excluir tarefa");
             Console.WriteLine("0 - Sair");
-            Console.WriteLine("Escolha uma opção: ");
+            Console.Write("Escolha uma opção: ");
 
             string entrada = Console.ReadLine();
 
@@ -26,8 +19,7 @@
         }
         static void Main(String[] args)
         {
-            MensagemColorida("Isso é um teste de vermelhor", ConsoleColor.Red);
-            Console.WriteLine("abu");
+            ExibirMenu();
         }
     }
 }
