@@ -23,17 +23,20 @@
         {
             Console.Write("\nDigite a descrição da tarefa: ");
             string tarefa = (Console.ReadLine() ?? "").Trim();
-            if (string.IsNullOrEmpty(tarefa)){ Console.WriteLine("Descrição vazia..."); return; }
-            else { tarefas.Add(tarefa); }
+            if (string.IsNullOrEmpty(tarefa)){ Console.WriteLine("Descrição vazia. Operação cancelada!"); return; }
+            else { 
+                tarefas.Add(tarefa);
+                Console.WriteLine("Tarefa adicionada com sucesso!");
+            }
         }
         static void ExibirTarefas()
         {
             if (tarefas.Count == 0)
             {
-                Console.WriteLine("\n(Lista vazia)");
-                Console.WriteLine("\nPressione qualquer botão para voltar...");
-                Console.ReadKey(true); return;
+                Console.WriteLine("\n(Lista vazia)\n");
+                return;
             }
+            Console.Clear();
             Console.WriteLine("--- Lista de tarefas ---");
             int index = 1;
             foreach (string tarefa in tarefas)
@@ -41,23 +44,21 @@
                 Console.WriteLine($"{index} - {tarefa}");
                 index++;
             }
+            Console.WriteLine("------------------------");
         }
         static void EditarTarefas()
         {
             ExibirTarefas();
-            if (tarefas.Count > 0)
+            if (tarefas.Count == 0) return;
+            Console.Write("Escolha qual tarefa vai editar: ");
+            ExibirTarefas();
+            string entrada = (Console.ReadLine() ?? "");
+            if (int.TryParse(entrada, out int saida))
             {
-                Console.Write("Escolha qual tarefa vai editar: ");
-                ExibirTarefas();
-                string entrada = (Console.ReadLine() ?? "");
-                if (int.TryParse(entrada, out int saida))
-                {
-                    string novaDescricao = (Console.ReadLine() ?? "");
-                    tarefas[saida - 1] = novaDescricao;
-                }
-                else { Console.WriteLine("Número Inválido"); return; }
+                string novaDescricao = (Console.ReadLine() ?? "");
+                tarefas[saida - 1] = novaDescricao;
             }
-            else return;
+            else { Console.WriteLine("Número Inválido"); return; }
         }
         static void ExcluirTarefa()
         {
@@ -66,7 +67,7 @@
             {
                 Console.WriteLine("Escolha qual tarefa vai excluir");
                 string entrada = (Console.ReadLine() ?? "");
-                if (int.TryParse(entrada, out int saida))
+                if (int.TryParse(entrada, out int saida) && saida >= 1 && saida <= tarefas.Count)
                 {
                     tarefas.RemoveAt(saida - 1);
                     Console.WriteLine("Tarefa removida com sucesso!");
