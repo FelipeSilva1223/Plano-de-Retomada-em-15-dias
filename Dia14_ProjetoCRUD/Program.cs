@@ -2,6 +2,8 @@
 {
     class Program
     {
+
+        static List<string> tarefas = new();
         public static int ExibirMenu()
         {
             Console.WriteLine("=== GERENCIADOR DE TAREFAS ===");
@@ -12,31 +14,66 @@
             Console.WriteLine("0 - Sair");
             Console.Write("Escolha uma opção: ");
 
-            string entrada = Console.ReadLine();
+            string entrada = (Console.ReadLine() ?? "").Trim();
 
             return int.TryParse(entrada, out int opcao) ? opcao : -1;
 
         }
         static void AdicionarTarefa()
         {
-            List<string> tarefas = new List<string>();
-            foreach (string t in tarefas)
-            {
-                Console.WriteLine(t);
-            }
-            Console.WriteLine("Adicinoar tarefa selecionado!");
+            Console.Write("\nDigite a descrição da tarefa: ");
+            string tarefa = (Console.ReadLine() ?? "").Trim();
+            if (string.IsNullOrEmpty(tarefa)){ Console.WriteLine("Descrição vazia..."); return; }
+            else { tarefas.Add(tarefa); }
         }
         static void ExibirTarefas()
         {
-            Console.WriteLine("Exibir tarefa selecionado!");
+            if (tarefas.Count == 0)
+            {
+                Console.WriteLine("\n(Lista vazia)");
+                Console.WriteLine("\nPressione qualquer botão para voltar...");
+                Console.ReadKey(true); return;
+            }
+            Console.WriteLine("--- Lista de tarefas ---");
+            int index = 1;
+            foreach (string tarefa in tarefas)
+            {
+                Console.WriteLine($"{index} - {tarefa}");
+                index++;
+            }
         }
         static void EditarTarefas()
         {
-            Console.WriteLine("Editar tarefa selecionado!");
+            ExibirTarefas();
+            if (tarefas.Count > 0)
+            {
+                Console.Write("Escolha qual tarefa vai editar: ");
+                ExibirTarefas();
+                string entrada = (Console.ReadLine() ?? "");
+                if (int.TryParse(entrada, out int saida))
+                {
+                    string novaDescricao = (Console.ReadLine() ?? "");
+                    tarefas[saida - 1] = novaDescricao;
+                }
+                else { Console.WriteLine("Número Inválido"); return; }
+            }
+            else return;
         }
         static void ExcluirTarefa()
         {
-            Console.WriteLine("Excluir tarefa selecionado!");
+            ExibirTarefas();
+            if (tarefas.Count > 0)
+            {
+                Console.WriteLine("Escolha qual tarefa vai excluir");
+                string entrada = (Console.ReadLine() ?? "");
+                if (int.TryParse(entrada, out int saida))
+                {
+                    tarefas.RemoveAt(saida - 1);
+                    Console.WriteLine("Tarefa removida com sucesso!");
+                }
+                else { Console.WriteLine("Número inválido!"); }
+            }
+            else return;
         }
         static void Main(String[] args)
         {
@@ -53,8 +90,9 @@
                     case 1: AdicionarTarefa(); break;
                     case 2: ExibirTarefas(); break;
                     case 3: EditarTarefas(); break;
-                    case 4: ExibirTarefas(); break;
+                    case 4: ExcluirTarefa(); break;
                     case 0: sair = true; break;
+                    default: Console.WriteLine("Opção inválida"); break;
                 }
             } while (!sair);
         }
